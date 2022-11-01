@@ -1,0 +1,12 @@
+[default]
+locale = "en-us"
+
+[default.extend-words]
+# Don't correct the word "prev" and "ret"
+prev = "prev"
+ret = "ret"
+bare = "bare"
+goes = "goes"
+
+[files]
+extend-exclude = [ "momenti-player-engine/momenti-player-engine/tests/data/*.json", "docs/" ]
