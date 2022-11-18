@@ -1,4 +1,5 @@
 use actix_web::{web, HttpResponse};
+use sqlx::PgConnection;
 
 #[derive(serde::Deserialize)]
 pub struct FormData {
@@ -6,6 +7,9 @@ pub struct FormData {
     name: String,
 }
 
-pub async fn subscribe(_form: web::Form<FormData>) -> HttpResponse {
+pub async fn subscribe(
+    _form: web::Form<FormData>,
+    _connection: web::Data<PgConnection>,
+) -> HttpResponse {
     HttpResponse::Ok().finish()
 }
