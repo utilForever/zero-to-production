@@ -17,6 +17,7 @@ serde = { version = "1.0.147", features = ["derive"] }
 config = "0.13.2"
 uuid = { version = "1.2.2", features = ["v4"] }
 chrono = { version = "0.4.23", default-features = false, features = ["clock"] }
+env_logger = "0.10.0"
 
 [dev-dependencies]
 reqwest = "0.11.12"
