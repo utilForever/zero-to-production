@@ -11,6 +11,8 @@ pub struct FormData {
 
 pub async fn subscribe(form: web::Form<FormData>, pool: web::Data<PgPool>) -> HttpResponse {
     let request_id = Uuid::new_v4();
+    let request_span = tracing::info_span!("Adding a new subscriber", %request_id, subscriber_email = %form.email, subscriber_name = %form.name);
+    let _request_span_guard = request_span.enter();
     tracing::info!(
         "request_id {request_id} - Adding '{} '{}' as a new subscriber",
         form.name,
