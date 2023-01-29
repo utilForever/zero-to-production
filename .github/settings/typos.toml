@@ -7,6 +7,3 @@ prev = "prev"
 ret = "ret"
 bare = "bare"
 goes = "goes"
-
-[files]
-extend-exclude = [ "momenti-player-engine/momenti-player-engine/tests/data/*.json", "docs/" ]

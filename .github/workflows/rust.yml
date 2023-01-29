@@ -9,15 +9,16 @@ on:
       - main
 
 jobs:
-  fmt:
-    name: Rustfmt
+  rustfmt:
+    name: 🗊 Formatting
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Install stable toolchain
         uses: actions-rs/toolchain@v1
         with:
-          toolchain: stable
+          profile: minimal
+          toolchain: nightly
           override: true
           components: rustfmt
       - name: Run cargo fmt
@@ -27,7 +28,7 @@ jobs:
           args: --all -- --check
 
   lint:
-    name: Clippy
+    name: 🚨 Lint
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -42,7 +43,7 @@ jobs:
       SQLX_VERSION: 0.6.2
       SQLX_FEATURES: "rustls,postgres"
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Install stable toolchain
         uses: actions-rs/toolchain@v1
         with:
@@ -79,7 +80,7 @@ jobs:
           args: --all-features --all-targets -- -D warnings
 
   test:
-    name: Test Suite
+    name: ✅ Test Suite
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -94,7 +95,7 @@ jobs:
       SQLX_VERSION: 0.6.2
       SQLX_FEATURES: "rustls,postgres"
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Install stable toolchain
         uses: actions-rs/toolchain@v1
         with:
@@ -136,10 +137,10 @@ jobs:
           args: run --retries 5 --workspace --failure-output final
 
   security_audit:
-    name: Audit
+    name: 👮 Audit
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Cache cargo bin
         uses: actions/cache@v1
         with:
