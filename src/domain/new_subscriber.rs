@@ -1,6 +1,7 @@
+use crate::domain::SubscriberEmail;
 use crate::domain::SubscriberName;
 
 pub struct NewSubscriber {
-    pub email: String,
+    pub email: SubscriberEmail,
     pub name: SubscriberName,
 }
