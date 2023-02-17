@@ -1,9 +1,15 @@
+use validator::validate_email;
+
 #[derive(Debug)]
 pub struct SubscriberEmail(String);
 
 impl SubscriberEmail {
     pub fn parse(s: String) -> Result<SubscriberEmail, String> {
-        Ok(Self(s))
+        if validate_email(&s) {
+            Ok(Self(s))
+        } else {
+            Err(format!("{s} is not a valid subscriber email."))
+        }
     }
 }
 
@@ -29,7 +35,7 @@ mod tests {
         let email = "ursuladomain.com".to_string();
         assert_err!(SubscriberEmail::parse(email));
     }
-    
+
     #[test]
     fn email_missing_subject_is_rejected() {
         let email = "@domain.com".to_string();
