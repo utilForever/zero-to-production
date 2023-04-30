@@ -26,3 +26,11 @@ impl EmailClient {
         todo!()
     }
 }
+
+#[cfg(test)]
+mod tests {
+    #[tokio::test]
+    async fn send_email_fires_a_request_to_base_url() {
+        todo!()
+    }
+}
