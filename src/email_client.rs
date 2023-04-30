@@ -69,7 +69,16 @@ mod tests {
     use fake::{Fake, Faker};
     use secrecy::Secret;
     use wiremock::matchers::{header, header_exists, method, path};
+    use wiremock::Request;
     use wiremock::{Mock, MockServer, ResponseTemplate};
+
+    struct SendEmailBodyMatcher;
+
+    impl wiremock::Match for SendEmailBodyMatcher {
+        fn matches(&self, request: &Request) -> bool {
+            unimplemented!()
+        }
+    }
 
     #[tokio::test]
     async fn send_email_fires_a_request_to_base_url() {
